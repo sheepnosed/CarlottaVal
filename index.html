@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: purple;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2em;
+            color: white;
+            position: relative;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #yes {
+            background-color: red;
+            color: white;
+        }
+        #no {
+            background-color: white;
+            color: red;
+            position: absolute;
+        }
+        img {
+            margin-top: 20px;
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="message">Hiiii babe, can you be my my my valentine? :) ❤️</h1>
+    
+    <div class="buttons">
+        <button id="yes" onclick="sayYes()">Yes</button>
+        <button id="no" onclick="handleNo()">No</button>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        const noMessages = [
+            "Hahaha babe you put the wrong answer! Try again :)",
+            "Babe no more silly jokes, press yes!",
+            "Babe? 🥺",
+            "Ok :( Ahaha jk, you meant to press yes! 😆"
+        ];
+
+        function sayYes() {
+            document.body.innerHTML = "<h1>Yay! Time for tomahawk time :3 ❤️</h1>";
+
+            // Add Tomahawk Image
+            let tomahawkImg = document.createElement("img");
+            tomahawkImg.src = "tomahawk.jpg"; // Make sure to upload this file to GitHub
+            tomahawkImg.alt = "Tomahawk";
+            document.body.appendChild(tomahawkImg);
+
+            // Add "Me and You" Image
+            let coupleImg = document.createElement("img");
+            coupleImg.src = "meandu.jpg"; // Make sure to upload this file to GitHub
+            coupleImg.alt = "Us 💖";
+            document.body.appendChild(coupleImg);
+        }
+
+        function handleNo() {
+            let noButton = document.getElementById("no");
+            if (noClickCount < noMessages.length) {
+                document.getElementById("message").innerText = noMessages[noClickCount];
+                noClickCount++;
+            } else {
+                noButton.style.position = "fixed";
+                noButton.style.top = "10px";
+                noButton.style.right = "10px";
+                document.getElementById("message").innerText = "I made it easier for you :)";
+                noButton.onclick = moveNo;
+            }
+        }
+
+        function moveNo() {
+            let noButton = document.getElementById("no");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+    </script>
+
+</body>
+</html>
